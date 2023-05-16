@@ -17,25 +17,25 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        val service = DeestinationRetrofit.getService(DestinationServices::class.java)
-        val call = service.getPromoMessge("http://10.0.2.2:7000/messages")
-        call.enqueue(object : Callback<String>{
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                if(response.isSuccessful){
-                    binding.textFromServer.text  = response.body()
-                }
-            }
-
-            override fun onFailure(call: Call<String>, t: Throwable) {
-            }
-
-        })
-//        binding.serverText.text =
-
-        binding.btnSplash.setOnClickListener{
-            startActivity(Intent(this@SplashActivity , DestinationActivity::class.java))
-            finish()
-        }
+//        val service = DeestinationRetrofit.getService(DestinationServices::class.java)
+//        val call = service.getPromoMessge("http://10.0.2.2:7000/messages")
+//        call.enqueue(object : Callback<String>{
+//            override fun onResponse(call: Call<String>, response: Response<String>) {
+//                if(response.isSuccessful){
+//                    binding.textFromServer.text  = response.body()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<String>, t: Throwable) {
+//            }
+//
+//        })
+////        binding.serverText.text =
+//
+//        binding.btnSplash.setOnClickListener{
+//            startActivity(Intent(this@SplashActivity , DestinationActivity::class.java))
+//            finish()
+//        }
 
     }
 }

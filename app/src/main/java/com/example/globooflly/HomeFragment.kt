@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.globooflly.adapter.CountryAdapter
-import com.example.globooflly.databinding.ActivityDestinationBinding
 import com.example.globooflly.databinding.FragmentHomeBinding
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.network.DestinationServices

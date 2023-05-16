@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.globooflly.databinding.FragmentDetailBinding
-import com.example.globooflly.databinding.FragmentHomeBinding
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.network.DestinationServices
 import com.example.globooflly.retrofit.DeestinationRetrofit

@@ -6,47 +6,47 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".SplashActivity">
-   <ImageView android:layout_width="100dp"
-              android:layout_height="150dp"
-              android:src="@drawable/globofly" app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-              android:id="@+id/imageView"/>
-   <TextView android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="GloboFly"
-             android:scrollbarSize="30sp"
-             android:textStyle="bold"
-             android:textColor="@color/movi"
-             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintHorizontal_bias="0.493" app:layout_constraintTop_toBottomOf="@+id/imageView"
-             android:layout_marginTop="20dp" android:id="@+id/textView"/>
+<!--   <ImageView android:layout_width="100dp"-->
+<!--              android:layout_height="150dp"-->
+<!--              android:src="@drawable/globofly" app:layout_constraintEnd_toEndOf="parent"-->
+<!--              app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"-->
+<!--              android:id="@+id/imageView"/>-->
+<!--   <TextView android:layout_width="wrap_content"-->
+<!--             android:layout_height="wrap_content"-->
+<!--             android:text="GloboFly"-->
+<!--             android:scrollbarSize="30sp"-->
+<!--             android:textStyle="bold"-->
+<!--             android:textColor="@color/movi"-->
+<!--             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"-->
+<!--             app:layout_constraintHorizontal_bias="0.493" app:layout_constraintTop_toBottomOf="@+id/imageView"-->
+<!--             android:layout_marginTop="20dp" android:id="@+id/textView"/>-->
 
-   <TextView android:id="@+id/serverText"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="... For endless vacation"
-             android:textSize="17sp"
-             app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="15dp"
-             app:layout_constraintHorizontal_bias="0.521"/>
-   <TextView android:id="@+id/textFromServer"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="... For endless vacationhfhbhbhrgbghre"
-             android:maxLines="2"
-             android:layout_marginStart="15dp"
-             android:layout_marginEnd="15dp"
-             android:textColor="@color/grey"
-             android:textSize="17sp" app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.622"
-             app:layout_constraintTop_toBottomOf="@+id/serverText" android:layout_marginTop="55dp"/>
-   <Button
-           android:id="@+id/btnSplash"
-           android:layout_width="150dp"
-           android:layout_height="50dp"
-           android:text="go to home"
-           app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"
-           android:layout_marginBottom="144dp"/>
+<!--   <TextView android:id="@+id/serverText"-->
+<!--             android:layout_width="wrap_content"-->
+<!--             android:layout_height="wrap_content"-->
+<!--             android:text="... For endless vacation"-->
+<!--             android:textSize="17sp"-->
+<!--             app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintEnd_toEndOf="parent"-->
+<!--             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="15dp"-->
+<!--             app:layout_constraintHorizontal_bias="0.521"/>-->
+<!--   <TextView android:id="@+id/textFromServer"-->
+<!--             android:layout_width="wrap_content"-->
+<!--             android:layout_height="wrap_content"-->
+<!--             android:text="... For endless vacationhfhbhbhrgbghre"-->
+<!--             android:maxLines="2"-->
+<!--             android:layout_marginStart="15dp"-->
+<!--             android:layout_marginEnd="15dp"-->
+<!--             android:textColor="@color/grey"-->
+<!--             android:textSize="17sp" app:layout_constraintEnd_toEndOf="parent"-->
+<!--             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.622"-->
+<!--             app:layout_constraintTop_toBottomOf="@+id/serverText" android:layout_marginTop="55dp"/>-->
+<!--   <Button-->
+<!--           android:id="@+id/btnSplash"-->
+<!--           android:layout_width="150dp"-->
+<!--           android:layout_height="50dp"-->
+<!--           android:text="go to home"-->
+<!--           app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"-->
+<!--           app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"-->
+<!--           android:layout_marginBottom="144dp"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

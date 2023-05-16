@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.example.globooflly.databinding.ActivityAddNewDestinationBinding
 import com.example.globooflly.databinding.FragmentAddNewDestinationBinding
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.network.DestinationServices

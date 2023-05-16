@@ -60,14 +60,12 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     //material design
     implementation 'com.google.android.material:material:1.9.0'
-    // Navigation
-//    def nav_version = "2.6.0-beta01"
-//    implementation ("androidx.navigation:navigation-fragment-ktx$nav_version")
-//    implementation ("androidx.navigation:navigation-ui-ktx$nav_version")
 
-//    classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
+    //navigation
+    def nav_version = "2.5.3"
 
-    //multidex
-//    implementation 'com.android.support:multidex:1.0.3'
+    // Kotlin
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
 }

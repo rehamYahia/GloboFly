@@ -27,14 +27,13 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
-                TODO("Not yet implemented")
             }
 
         })
 //        binding.serverText.text =
 
         binding.btnSplash.setOnClickListener{
-            startActivity(Intent(this@SplashActivity , HomeActivity::class.java))
+            startActivity(Intent(this@SplashActivity , DestinationActivity::class.java))
             finish()
         }
 

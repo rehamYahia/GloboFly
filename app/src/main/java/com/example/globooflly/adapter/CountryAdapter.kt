@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.globooflly.DetailActivity
 import com.example.globooflly.R
@@ -14,6 +16,7 @@ import java.util.*
 
 class CountryAdapter: RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
     var countryList :List <DestinationModel> = ArrayList()
+    private lateinit var navControler:NavController
 
 
     constructor(list: List<DestinationModel>?){
@@ -39,10 +42,13 @@ class CountryAdapter: RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         holder.cuntry.text = countryList.get(position).country
         holder.itemView.setOnClickListener{it->
-            val context = it.context
-            val intent = Intent(context , DetailActivity::class.java)
-            intent.putExtra("thisId",countryList.get(position).id)
-            context.startActivity(intent)
+//            val context = it.context
+//            val intent = Intent(context , DetailActivity::class.java)
+//            intent.putExtra("thisId",countryList.get(position).id)
+//            context.startActivity(intent)
+
+            val data = bundleOf("thisId" to countryList.get(position).id)
+            navControler.navigate(R.id.detailFragment)
         }
     }
 }

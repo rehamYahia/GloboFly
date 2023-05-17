@@ -48,7 +48,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(binding.detailToolbar)
-        id = arguments?.getString("thisId")
+        id = arguments?.getString("id")
         viewDetailData()
 
         binding.serverUpdate.setOnClickListener {
@@ -77,7 +77,8 @@ class DetailFragment : Fragment() {
             override fun onResponse(call: Call<DestinationModel>, response: Response<DestinationModel>) {
                 if(response.isSuccessful){
                     binding.detailToolbar.title = response.body()?.city
-                    navController.navigate(R.id.homeFragment)
+                    val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+                    navController.navigate(action)
                    // finish()
                     Toast.makeText(activity , "post updated sussefully " , Toast.LENGTH_LONG).show()
                 }
@@ -117,7 +118,8 @@ class DetailFragment : Fragment() {
         call.enqueue(object :Callback<Unit>{
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
 //                finish()
-                navController.navigate(R.id.homeFragment)
+                val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+                navController.navigate(action)
                 Toast.makeText(activity , "delete successfully" , Toast.LENGTH_LONG).show()
             }
 

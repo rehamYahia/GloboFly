@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.globooflly.HomeFragmentDirections
 import com.example.globooflly.R
 import com.example.globooflly.model.DestinationModel
 import java.util.*
@@ -46,8 +47,10 @@ class CountryAdapter: RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
 //            context.startActivity(intent)
 //            navControler = Navigation.findNavController(it)
 //            navControler.navigate(R.id.detailFragment)
-            val data = bundleOf("thisId" to countryList[position].id)
-            Navigation.findNavController(it).navigate(R.id.detailFragment,data)
+            //navigation with safe args
+            val data = countryList[position].id
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(data)
+            Navigation.findNavController(it).navigate(action)
         }
     }
 }

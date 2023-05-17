@@ -47,7 +47,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initCountryRecycle()
         binding.floatingBtn.setOnClickListener {
-            navControler.navigate(R.id.addNewDestinationFragment)
+            val action = HomeFragmentDirections.actionHomeFragmentToAddNewDestinationFragment()
+            navControler.navigate(action)
         }
     }
 

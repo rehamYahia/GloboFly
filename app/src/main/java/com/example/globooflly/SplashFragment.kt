@@ -57,7 +57,10 @@ class SplashFragment : Fragment() {
         })
 
         binding.btnSplash.setOnClickListener{
-            navControler.navigate(R.id.homeFragment)
+//            navControler.navigate(R.id.homeFragment)
+            val action = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
+            navControler.navigate(action)
+
         }
 
     }

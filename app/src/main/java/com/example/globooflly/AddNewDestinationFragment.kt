@@ -51,7 +51,8 @@ class AddNewDestinationFragment : Fragment() {
                 override fun onResponse(call: Call<DestinationModel>, response: Response<DestinationModel>) {
                     if(response.isSuccessful){
 //                        finish()
-                        navController.navigate(R.id.homeFragment)
+                        val action = AddNewDestinationFragmentDirections.actionAddNewDestinationFragmentToHomeFragment()
+                        navController.navigate(action)
                         Toast.makeText(activity , "post add sussefully " , Toast.LENGTH_LONG).show()
                     }
                 }

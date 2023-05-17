@@ -19,14 +19,13 @@ import retrofit2.Response
 
 
 class AddNewDestinationFragment : Fragment() {
-    private lateinit var binding: FragmentAddNewDestinationBinding
+    private  var _binding: FragmentAddNewDestinationBinding?=null
+    private val binding get() = _binding!!
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentAddNewDestinationBinding.inflate(layoutInflater)
-        val view = binding.root
-//        setSupportActionBar(binding.addDestinationToolbar)
-        (activity as AppCompatActivity).setSupportActionBar(binding.addDestinationToolbar)
+
+
         navController = findNavController()
 
     }
@@ -36,13 +35,16 @@ class AddNewDestinationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_new_destination, container, false)
+//        return inflater.inflate(R.layout.fragment_add_new_destination, container, false)
+        _binding = FragmentAddNewDestinationBinding.inflate(inflater,container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).setSupportActionBar(binding.addDestinationToolbar)
         binding.serverAddBtn.setOnClickListener{
-
             val service = DeestinationRetrofit.getService(DestinationServices::class.java)
             val call = service.addDestinationPost(DestinationModel(null ,binding.addCityName.editText?.text.toString() , binding.addDescription.editText?.text.toString() ,binding.addCountryName.editText?.text.toString()))
             call.enqueue(object : Callback<DestinationModel> {
@@ -61,6 +63,11 @@ class AddNewDestinationFragment : Fragment() {
             })
 
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

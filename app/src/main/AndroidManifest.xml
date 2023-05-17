@@ -22,18 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name=".AddNewDestinationActivity"
-                android:exported="false"/>
-        <activity
-                android:name=".DetailActivity"
-                android:exported="false"/>
-        <activity
-                android:name=".HomeActivity"
-                android:exported="false"/>
-        <activity
-                android:name=".SplashActivity"
-                android:exported="false"/>
+
 
     </application>
 

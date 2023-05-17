@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.example.globooflly.databinding.ActivityDestinationBinding
-import com.example.globooflly.databinding.ActivityHomeBinding
+
 
 class DestinationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDestinationBinding

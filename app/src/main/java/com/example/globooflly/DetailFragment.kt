@@ -20,17 +20,15 @@ import retrofit2.Response
 
 class DetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentDetailBinding
+    private  var _binding: FragmentDetailBinding?=null
+    private val binding get() = _binding!!
     val service  = DeestinationRetrofit.getService(DestinationServices::class.java)
     var id:String?=null
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentDetailBinding.inflate(layoutInflater)
-        val view = binding.root
-//        setSupportActionBar(binding.detailToolbar)
-        (activity as AppCompatActivity).setSupportActionBar(binding.detailToolbar)
-        id = arguments?.getString("thisId")
+
+
         navController = findNavController()
 
     }
@@ -40,12 +38,17 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+//        return inflater.inflate(R.layout.fragment_detail, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).setSupportActionBar(binding.detailToolbar)
+        id = arguments?.getString("thisId")
         viewDetailData()
 
         binding.serverUpdate.setOnClickListener {
@@ -63,8 +66,8 @@ class DetailFragment : Fragment() {
     //functions
 
     fun updateData(id_p:String){
-        val services = DeestinationRetrofit.getService(DestinationServices::class.java)
-        val call = services.updateDestination(
+//        val services = DeestinationRetrofit.getService(DestinationServices::class.java)
+        val call = service.updateDestination(
             id_p ,
             binding.serverCityName.editText?.text.toString(),
             binding.serverCountryName.editText?.text.toString(),
@@ -123,6 +126,11 @@ class DetailFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

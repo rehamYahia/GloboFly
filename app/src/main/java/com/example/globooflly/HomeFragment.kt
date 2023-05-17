@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,14 +21,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
+    private  var _binding: FragmentHomeBinding?=null
+    private val binding get()= _binding!!
+
     private lateinit var navControler:NavController
     var DeList:List<DestinationModel>?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentHomeBinding.inflate(layoutInflater)
-        val view = binding.root
-        initCountryRecycle()
         navControler = findNavController()
 
     }
@@ -37,18 +37,21 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+//        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initCountryRecycle()
         binding.floatingBtn.setOnClickListener {
             navControler.navigate(R.id.addNewDestinationFragment)
         }
     }
 
     fun initCountryRecycle() {
-
 
         val service = DeestinationRetrofit.getService(DestinationServices::class.java)
         service.getAllDestinations().enqueue(object : Callback<List<DestinationModel>> {
@@ -61,8 +64,8 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<DestinationModel>>, t: Throwable) {
-//                Toast.makeText(this@HomeActivity ,t.message , Toast.LENGTH_LONG ).show()
-                binding.error.text = t.message
+                Toast.makeText(activity ,t.message , Toast.LENGTH_LONG ).show()
+//                binding.error.text = t.message
             }
 
         })
@@ -70,9 +73,14 @@ class HomeFragment : Fragment() {
 
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        initCountryRecycle()
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        initCountryRecycle()
+//    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

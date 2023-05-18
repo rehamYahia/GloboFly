@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.globooflly.databinding.FragmentDetailBinding
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.network.DestinationServices
@@ -23,6 +24,7 @@ class DetailFragment : Fragment() {
     private  var _binding: FragmentDetailBinding?=null
     private val binding get() = _binding!!
     val service  = DeestinationRetrofit.getService(DestinationServices::class.java)
+    val args : DetailFragmentArgs  by navArgs()
     var id:String?=null
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +50,9 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(binding.detailToolbar)
-        id = arguments?.getString("id")
+//        id = arguments?.getString("id")
+
+        id = args.listId
         viewDetailData()
 
         binding.serverUpdate.setOnClickListener {

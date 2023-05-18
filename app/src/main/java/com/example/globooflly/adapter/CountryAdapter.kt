@@ -49,7 +49,7 @@ class CountryAdapter: RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
 //            navControler.navigate(R.id.detailFragment)
             //navigation with safe args
             val data = countryList[position].id
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(data)
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(data!!)
             Navigation.findNavController(it).navigate(action)
         }
     }

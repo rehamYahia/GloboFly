@@ -1,4 +1,4 @@
-package com.example.globooflly
+package com.example.globooflly.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

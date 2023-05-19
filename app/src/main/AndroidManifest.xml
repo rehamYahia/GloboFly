@@ -14,7 +14,7 @@
             android:theme="@style/Theme.GlobooFlly"
             tools:targetApi="31">
         <activity
-                android:name=".DestinationActivity"
+                android:name=".ui.DestinationActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

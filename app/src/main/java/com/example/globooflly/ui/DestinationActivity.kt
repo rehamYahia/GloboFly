@@ -1,8 +1,9 @@
-package com.example.globooflly
+package com.example.globooflly.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
+import com.example.globooflly.R
 import com.example.globooflly.databinding.ActivityDestinationBinding
 
 

@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.globooflly.HomeFragmentDirections
 import com.example.globooflly.R
 import com.example.globooflly.model.DestinationModel
+import com.example.globooflly.ui.HomeFragmentDirections
 import java.util.*
 
 class CountryAdapter: RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {

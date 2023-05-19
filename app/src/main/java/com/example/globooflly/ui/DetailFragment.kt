@@ -13,7 +13,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.globooflly.databinding.FragmentDetailBinding
-import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.network.DestinationServices
 import com.example.globooflly.retrofit.DeestinationRetrofit
 import com.example.globooflly.viewmodel.DestinationViewModel
@@ -42,7 +41,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -69,77 +68,46 @@ class DetailFragment : Fragment() {
 
     //functions
 
-    fun updateData(id_p:String){
-////        val services = DeestinationRetrofit.getService(DestinationServices::class.java)
-//        val call = service.updateDestination(
-//            id_p ,
-//            binding.serverCityName.editText?.text.toString(),
-//            binding.serverCountryName.editText?.text.toString(),
-//            binding.serverDescription.editText?.text.toString()
-//        )
-//        call.enqueue(object : Callback<DestinationModel> {
-//            override fun onResponse(call: Call<DestinationModel>, response: Response<DestinationModel>) {
-//                if(response.isSuccessful){
-//                    binding.detailToolbar.title = response.body()?.city
-//                    val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
-//                    navController.navigate(action)
-//                   // finish()
-//                    Toast.makeText(activity , "post updated sussefully " , Toast.LENGTH_LONG).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<DestinationModel>, t: Throwable) {
-//                Toast.makeText(activity ,  t.message.toString() , Toast.LENGTH_LONG).show()
-//            }
-//        })
+    private fun updateData(id:String){
         destinationViewModel.updateDestination(
-            id.toString() ,
+            id ,
             binding.serverCityName.editText?.text.toString(),
             binding.serverCountryName.editText?.text.toString(),
             binding.serverDescription.editText?.text.toString()
         ).observe(viewLifecycleOwner , Observer {list->
-            binding.detailToolbar.title = list.get(id!!.toInt()).city
+            if(list != null)
+            {
+                Toast.makeText(activity , "post updated sussefully " , Toast.LENGTH_LONG).show()
+                //broblem---------------------
+                binding.detailToolbar.title = list.city
+                //broblem---------------------
+                val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+                navController.navigate(action)
+            }
+
         })
-
-
     }
 
+    //problem--------------
     fun viewDetailData(){
-        val service  = DeestinationRetrofit.getService(DestinationServices::class.java)
-        val call = service.getDestinationsByID(id.toString())
-        call.enqueue(object :Callback<DestinationModel>{
-            override fun onResponse(call: Call<DestinationModel>, response: Response<DestinationModel>) {
-                if(response.isSuccessful){
-                    binding.detailToolbar.title = response.body()?.city
-                    binding.serverCityName.editText?.setText(response.body()?.city )
-                    binding.serverCountryName.editText?.setText(response.body()?.country  )
-                    binding.serverDescription.editText?.setText(response.body()?.description  )
-
-
-                }
+        destinationViewModel.ViewDetailModel(id!!).observe(viewLifecycleOwner , Observer{data->
+            if(data!= null){
+                //broblem---------------------
+                binding.detailToolbar.title = data.country
+                //broblem---------------------
+                binding.serverCityName.editText?.setText(data.city)
+                binding.serverCountryName.editText?.setText( data.country)
+                binding.serverDescription.editText?.setText(data.description  )
             }
-
-            override fun onFailure(call: Call<DestinationModel>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
         })
-
     }
 
     fun deleteDetailData(id:String){
-        val service  = DeestinationRetrofit.getService(DestinationServices::class.java)
-        val call = service.deleteDestination(id)
-        call.enqueue(object :Callback<Unit>{
-            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-//                finish()
+        destinationViewModel.deleteDestination(id).observe(viewLifecycleOwner , Observer{unit->
+            if(unit == null){
                 val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
                 navController.navigate(action)
                 Toast.makeText(activity , "delete successfully" , Toast.LENGTH_LONG).show()
-            }
-
-            override fun onFailure(call: Call<Unit>, t: Throwable) {
-                Toast.makeText(activity , t.message.toString() , Toast.LENGTH_LONG).show()
             }
 
         })

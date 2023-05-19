@@ -8,25 +8,48 @@ import com.example.globooflly.repositories.DestinationRepoImpl
 import com.example.globooflly.repositories.DestinationRepositories
 
 class DestinationViewModel : ViewModel() {
-     val DestinationRepo:DestinationRepositories = DestinationRepoImpl()
-     var promoMessage : MutableLiveData<String> = MutableLiveData()
-     var listOfCountry:MutableLiveData<List<DestinationModel>> = MutableLiveData()
-     var listUpdated:MutableLiveData<List<DestinationModel>> = MutableLiveData()
+     private val DestinationRepo:DestinationRepositories = DestinationRepoImpl()
+     private var _promoMessage : MutableLiveData<String> = MutableLiveData()
+     private var _listOfCountry:MutableLiveData<List<DestinationModel>> = MutableLiveData()
+     private var _listUpdated:MutableLiveData<DestinationModel> = MutableLiveData()
+     private var _ViewDetailData:MutableLiveData<DestinationModel> = MutableLiveData()
+     private var _deleteData:MutableLiveData<Unit> = MutableLiveData()
+    private var _addDestination:MutableLiveData<DestinationModel> = MutableLiveData()
+
+    //method---------------------------------
 
     fun getPromoData():LiveData<String>
     {
-        promoMessage =  DestinationRepo.getPromoMessage()
-        return promoMessage
+        _promoMessage =  DestinationRepo.getPromoMessage()
+        return _promoMessage
     }
 
     fun getList():LiveData<List<DestinationModel>>{
-        listOfCountry =  DestinationRepo.getCountryList()
-        return listOfCountry
+        _listOfCountry =  DestinationRepo.getCountryList()
+        return _listOfCountry
     }
 
-    fun updateDestination(id:String , city: String, country: String, description: String):LiveData<List<DestinationModel>>{
-        listUpdated = DestinationRepo.updateData( id , city , country , description)
-        return listUpdated
+    //problem-----------
+    fun updateDestination(id:String , city: String, country: String, description: String):LiveData<DestinationModel>{
+        _listUpdated = DestinationRepo.updateData( id , city , country , description)
+        return _listUpdated
+    }
+
+    fun ViewDetailModel(id:String) : LiveData<DestinationModel>{
+        _ViewDetailData = DestinationRepo.viewDetailData(id)
+        return _ViewDetailData
+    }
+
+    fun deleteDestination(id:String):LiveData<Unit>
+    {
+        _deleteData = DestinationRepo.deleteDestination(id)
+        return _deleteData
+    }
+
+    fun AddNewDestination(destinationModel: DestinationModel):LiveData<DestinationModel>{
+        _addDestination = DestinationRepo.addNewDestination(destinationModel)
+        return _addDestination
+
     }
 
 }

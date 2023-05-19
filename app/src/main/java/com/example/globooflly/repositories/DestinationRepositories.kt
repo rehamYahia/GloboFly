@@ -6,5 +6,13 @@ import com.example.globooflly.model.DestinationModel
 interface DestinationRepositories {
     fun getPromoMessage():MutableLiveData<String>
     fun getCountryList():MutableLiveData<List<DestinationModel>>
-    fun updateData(id:String , city:String , country:String , description:String):MutableLiveData<List<DestinationModel>>
+
+    //problem-----------
+    fun updateData(id:String , city:String , country:String , description:String):MutableLiveData<DestinationModel>
+
+    fun viewDetailData(id:String):MutableLiveData<DestinationModel>
+
+    fun deleteDestination(id:String):MutableLiveData<Unit>
+
+    fun addNewDestination(destinationModel: DestinationModel):MutableLiveData<DestinationModel>
 }

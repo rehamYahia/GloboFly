@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DeList = ArrayList()
+
         navControler = findNavController()
 
 
@@ -53,10 +53,15 @@ class HomeFragment : Fragment() {
     private fun initCountryRecycle() {
 
         destinationViewModel.getList().observe(viewLifecycleOwner , Observer { list->
-            DeList = list as ArrayList<DestinationModel>
+            if(list!=null)
+            {
+                DeList = ArrayList()
+                DeList = list as ArrayList<DestinationModel>
+                binding.recycleCountry.adapter = CountryAdapter(DeList)
+                binding.recycleCountry.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+            }
+
         })
-        binding.recycleCountry.adapter = CountryAdapter(DeList)
-        binding.recycleCountry.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
     }
 

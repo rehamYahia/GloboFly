@@ -30,7 +30,7 @@ class SplashFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -46,7 +46,6 @@ class SplashFragment : Fragment() {
         })
 
         binding.btnSplash.setOnClickListener{
-
             val action = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
             navControler.navigate(action)
 

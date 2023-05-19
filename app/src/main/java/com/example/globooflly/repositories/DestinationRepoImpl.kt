@@ -14,13 +14,13 @@ import retrofit2.Response
 
 class DestinationRepoImpl :DestinationRepositories{
    private lateinit var _promoMessage:MutableLiveData<String>
-   private lateinit var countryList:MutableLiveData<List<DestinationModel>>
+   private  lateinit var countryList:MutableLiveData<List<DestinationModel>>
    private lateinit var context: Context
    private lateinit var listUpdated:MutableLiveData<List<DestinationModel>>
-    private lateinit var navController: NavController
+   private lateinit var navController: NavController
+    val service = DeestinationRetrofit.getService(DestinationServices::class.java)
     override fun getPromoMessage(): MutableLiveData<String> {
         _promoMessage = MutableLiveData()
-        val service = DeestinationRetrofit.getService(DestinationServices::class.java)
         val call = service.getPromoMessge("http://10.0.2.2:7000/messages")
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -36,26 +36,30 @@ class DestinationRepoImpl :DestinationRepositories{
     }
 
     override fun getCountryList(): MutableLiveData<List<DestinationModel>> {
-        val service = DeestinationRetrofit.getService(DestinationServices::class.java)
-        service.getAllDestinations().enqueue(object : Callback<List<DestinationModel>> {
+        countryList = MutableLiveData()
+       val call= service.getAllDestinations()
+        call.enqueue(object :Callback<List<DestinationModel>>{
             override fun onResponse(call: Call<List<DestinationModel>>, response: Response<List<DestinationModel>>) {
-                if(response.isSuccessful){
-//                    DeList = response.body()
-//                    binding.recycleCountry.adapter = CountryAdapter(DeList)
+                if(response.isSuccessful)
+                {
                     countryList.postValue(response.body())
                 }
+
             }
+
             override fun onFailure(call: Call<List<DestinationModel>>, t: Throwable) {
                 Toast.makeText(context ,t.message , Toast.LENGTH_LONG ).show()
             }
 
         })
-        return countryList
+
+       return countryList
     }
 
     override fun updateData(id:String , city: String, country: String, description: String): MutableLiveData<List<DestinationModel>>
-    {   val services = DeestinationRetrofit.getService(DestinationServices::class.java)
-        val call = services.updateDestination(id , city , country , description)
+    {
+        listUpdated = MutableLiveData()
+        val call = service.updateDestination(id , city , country , description)
 
         call.enqueue(object : Callback<DestinationModel> {
             override fun onResponse(call: Call<DestinationModel>, response: Response<DestinationModel>) {

@@ -11,16 +11,18 @@ import com.example.globooflly.R
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.ui.HomeFragmentDirections
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CountryAdapter: RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
-    var countryList :List <DestinationModel> = ArrayList()
+    var countryList :ArrayList <DestinationModel> = ArrayList()
 //    private lateinit var navControler:NavController
 
 
-    constructor(list: List<DestinationModel>?){
-        if (list != null) {
-            countryList = list
-        }
+    constructor(list: ArrayList<DestinationModel>?){
+//        if (list != null) {
+//            countryList = list
+//        }
+        countryList = list!!
     }
 
     class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,15 +40,8 @@ class CountryAdapter: RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
     }
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-        holder.cuntry.text = countryList.get(position).country
+        holder.cuntry.text = countryList[position].country
         holder.itemView.setOnClickListener{
-//            val context = it.context
-//            val intent = Intent(context , DetailActivity::class.java)
-//            intent.putExtra("thisId",countryList.get(position).id)
-//            context.startActivity(intent)
-//            navControler = Navigation.findNavController(it)
-//            navControler.navigate(R.id.detailFragment)
-            //navigation with safe args
             val data = countryList[position].id
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(data!!)
             Navigation.findNavController(it).navigate(action)

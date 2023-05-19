@@ -26,7 +26,7 @@ class DetailFragment : Fragment() {
 
     private  var _binding: FragmentDetailBinding?=null
     private val binding get() = _binding!!
-    val service  = DeestinationRetrofit.getService(DestinationServices::class.java)
+
     val args : DetailFragmentArgs by navArgs()
     var id:String?=null
     private lateinit var navController: NavController
@@ -105,6 +105,7 @@ class DetailFragment : Fragment() {
     }
 
     fun viewDetailData(){
+        val service  = DeestinationRetrofit.getService(DestinationServices::class.java)
         val call = service.getDestinationsByID(id.toString())
         call.enqueue(object :Callback<DestinationModel>{
             override fun onResponse(call: Call<DestinationModel>, response: Response<DestinationModel>) {
@@ -127,6 +128,7 @@ class DetailFragment : Fragment() {
     }
 
     fun deleteDetailData(id:String){
+        val service  = DeestinationRetrofit.getService(DestinationServices::class.java)
         val call = service.deleteDestination(id)
         call.enqueue(object :Callback<Unit>{
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {

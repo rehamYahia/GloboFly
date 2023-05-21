@@ -20,7 +20,7 @@ class SplashFragment : Fragment() {
     private val binding get() = _binding!!
 //    private lateinit var binding :FragmentSplashBinding
     private lateinit var navControler: NavController
-    val destinationViewModel : DestinationViewModel by viewModels()
+    private val destinationViewModel : DestinationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +42,10 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         destinationViewModel.getPromoData().observe( viewLifecycleOwner, Observer {promo->
-            binding.textFromServer.text = promo
+            if(promo != null){
+                binding.textFromServer.text = promo
+            }
+
         })
 
         binding.btnSplash.setOnClickListener{

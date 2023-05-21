@@ -5,8 +5,9 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.example.globooflly.R
 import com.example.globooflly.databinding.ActivityDestinationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DestinationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDestinationBinding
     override fun onCreate(savedInstanceState: Bundle?) {

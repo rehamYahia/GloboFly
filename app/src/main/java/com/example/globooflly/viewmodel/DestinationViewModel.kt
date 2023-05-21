@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.repositories.DestinationRepoImpl
 import com.example.globooflly.repositories.DestinationRepositories
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DestinationViewModel : ViewModel() {
-     private val DestinationRepo:DestinationRepositories = DestinationRepoImpl()
+@HiltViewModel
+class DestinationViewModel @Inject constructor(private val destinationRepoImp:DestinationRepoImpl) : ViewModel() {
      private var _promoMessage : MutableLiveData<String> = MutableLiveData()
      private var _listOfCountry:MutableLiveData<List<DestinationModel>> = MutableLiveData()
      private var _listUpdated:MutableLiveData<DestinationModel> = MutableLiveData()
@@ -20,34 +22,34 @@ class DestinationViewModel : ViewModel() {
 
     fun getPromoData():LiveData<String>
     {
-        _promoMessage =  DestinationRepo.getPromoMessage()
+        _promoMessage =  destinationRepoImp.getPromoMessage()
         return _promoMessage
     }
 
     fun getList():LiveData<List<DestinationModel>>{
-        _listOfCountry =  DestinationRepo.getCountryList()
+        _listOfCountry =  destinationRepoImp.getCountryList()
         return _listOfCountry
     }
 
     //problem-----------
     fun updateDestination(id:String , city: String, country: String, description: String):LiveData<DestinationModel>{
-        _listUpdated = DestinationRepo.updateData( id , city , country , description)
+        _listUpdated = destinationRepoImp.updateData( id , city , country , description)
         return _listUpdated
     }
 
     fun ViewDetailModel(id:String) : LiveData<DestinationModel>{
-        _ViewDetailData = DestinationRepo.viewDetailData(id)
+        _ViewDetailData = destinationRepoImp.viewDetailData(id)
         return _ViewDetailData
     }
 
     fun deleteDestination(id:String):LiveData<Unit>
     {
-        _deleteData = DestinationRepo.deleteDestination(id)
+        _deleteData = destinationRepoImp.deleteDestination(id)
         return _deleteData
     }
 
     fun AddNewDestination(destinationModel: DestinationModel):LiveData<DestinationModel>{
-        _addDestination = DestinationRepo.addNewDestination(destinationModel)
+        _addDestination = destinationRepoImp.addNewDestination(destinationModel)
         return _addDestination
 
     }

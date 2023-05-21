@@ -16,13 +16,13 @@ interface DestinationServices {
 //    @GET("destination")
 //    fun getAllDestinations(@QueryMap filter :HashMap<String , String>):Call<List<DestinationModel>>
 
-//    @GET("messages")
-//    fun getPromoMessge():Call<String>
+    @GET("messages")
+    fun getPromoMessge():Call<String>
 
 
     //run with another server
-    @GET
-    fun getPromoMessge(@Url url:String):Call<String>
+//    @GET
+//    fun getPromoMessge(@Url url:String):Call<String>
 
 
     //using path parameter

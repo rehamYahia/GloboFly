@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.globooflly.databinding.FragmentHomeBinding
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.viewmodel.DestinationViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -54,17 +56,15 @@ class HomeFragment : Fragment() {
 
     private fun initCountryRecycle() {
 
-        destinationViewModel.getList().observe(viewLifecycleOwner , Observer { list->
-            if(list!=null)
-            {
+        destinationViewModel.getList()
+        lifecycleScope.launch {
+            destinationViewModel.listOfCountry.collect{
                 DeList = ArrayList()
-                DeList = list as ArrayList<DestinationModel>
+                DeList = it as ArrayList<DestinationModel>
                 binding.recycleCountry.adapter = CountryAdapter(DeList)
                 binding.recycleCountry.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
             }
-
-        })
-
+        }
     }
 
 

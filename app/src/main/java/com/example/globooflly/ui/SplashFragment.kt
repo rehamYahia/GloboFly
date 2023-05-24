@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.globooflly.databinding.FragmentSplashBinding
 import com.example.globooflly.viewmodel.DestinationViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -41,20 +43,23 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: android.view.View, savedInstanceState: android.os.Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        destinationViewModel.getPromoData().observe( viewLifecycleOwner, Observer {promo->
-            if(promo != null){
-                binding.textFromServer.text = promo
+        destinationViewModel.getPromoData()
+        lifecycleScope.launch {
+            destinationViewModel.promoMessage.collect{
+                binding.textFromServer.text = it
             }
+        }
 
-        })
+//        destinationViewModel.getPromoData().observe( viewLifecycleOwner, Observer {promo->
+//            if(promo != null){
+//                binding.textFromServer.text = promo
+//            }
+//        })
 
         binding.btnSplash.setOnClickListener{
             val action = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
             navControler.navigate(action)
-
         }
-
     }
 
     override fun onDestroyView() {

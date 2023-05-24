@@ -9,14 +9,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.globooflly.databinding.FragmentDetailBinding
 import com.example.globooflly.network.DestinationServices
-import com.example.globooflly.retrofit.DeestinationRetrofit
 import com.example.globooflly.viewmodel.DestinationViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,43 +76,46 @@ class DetailFragment : Fragment() {
             binding.serverCityName.editText?.text.toString(),
             binding.serverCountryName.editText?.text.toString(),
             binding.serverDescription.editText?.text.toString()
-        ).observe(viewLifecycleOwner , Observer {list->
-            if(list != null)
-            {
+        )
+        lifecycleScope.launch {
+            destinationViewModel.listUpdated.collect{
                 Toast.makeText(activity , "post updated sussefully " , Toast.LENGTH_LONG).show()
                 //broblem---------------------
-                binding.detailToolbar.title = list.city
+                binding.detailToolbar.title = it?.city
                 //broblem---------------------
                 val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
                 navController.navigate(action)
             }
+        }
 
-        })
     }
 
     //problem--------------
     fun viewDetailData(){
-        destinationViewModel.ViewDetailModel(id!!).observe(viewLifecycleOwner , Observer{data->
-            if(data!= null){
+        destinationViewModel.ViewDetailModel(id!!)
+        lifecycleScope.launch {
+            destinationViewModel.ViewDetailData.collect{
                 //broblem---------------------
-                binding.detailToolbar.title = data.country
+                binding.detailToolbar.title = it?.country
                 //broblem---------------------
-                binding.serverCityName.editText?.setText(data.city)
-                binding.serverCountryName.editText?.setText( data.country)
-                binding.serverDescription.editText?.setText(data.description  )
+                binding.serverCityName.editText?.setText(it?.city)
+                binding.serverCountryName.editText?.setText( it?.country)
+                binding.serverDescription.editText?.setText(it?.description  )
             }
-        })
+        }
+
     }
 
     fun deleteDetailData(id:String){
-        destinationViewModel.deleteDestination(id).observe(viewLifecycleOwner , Observer{unit->
-            if(unit == null){
+        destinationViewModel.deleteDestination(id)
+        lifecycleScope.launch {
+            destinationViewModel.deleteData.collect{
                 val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
                 navController.navigate(action)
                 Toast.makeText(activity , "delete successfully" , Toast.LENGTH_LONG).show()
             }
+        }
 
-        })
     }
 
     override fun onDestroyView() {

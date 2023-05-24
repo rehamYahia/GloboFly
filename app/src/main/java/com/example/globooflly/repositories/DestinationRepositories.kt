@@ -4,15 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import com.example.globooflly.model.DestinationModel
 
 interface DestinationRepositories {
-    fun getPromoMessage():MutableLiveData<String>
-    fun getCountryList():MutableLiveData<List<DestinationModel>>
+    suspend fun getPromoMessage():String
+    suspend fun getCountryList():List<DestinationModel>
 
     //problem-----------
-    fun updateData(id:String , city:String , country:String , description:String):MutableLiveData<DestinationModel>
+    suspend fun updateData(id:String , city:String , country:String , description:String):DestinationModel
 
-    fun viewDetailData(id:String):MutableLiveData<DestinationModel>
+    suspend fun viewDetailData(id:String):DestinationModel
 
-    fun deleteDestination(id:String):MutableLiveData<Unit>
+   suspend fun deleteDestination(id:String):Unit
 
-    fun addNewDestination(destinationModel: DestinationModel):MutableLiveData<DestinationModel>
+   suspend fun addNewDestination(destinationModel: DestinationModel):DestinationModel
 }

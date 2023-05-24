@@ -6,7 +6,7 @@ import retrofit2.http.*
 
 interface DestinationServices {
     @GET("destination")
-    fun getAllDestinations():Call<List<DestinationModel>>
+   suspend fun getAllDestinations():List<DestinationModel>
 
     //using query parameter
 //    @GET("destination")
@@ -17,7 +17,7 @@ interface DestinationServices {
 //    fun getAllDestinations(@QueryMap filter :HashMap<String , String>):Call<List<DestinationModel>>
 
     @GET("messages")
-    fun getPromoMessge():Call<String>
+    suspend fun getPromoMessge():String
 
 
     //run with another server
@@ -27,20 +27,20 @@ interface DestinationServices {
 
     //using path parameter
     @GET("destination/{id}")
-    fun getDestinationsByID(@Path("id") id:String):Call<DestinationModel>
+    suspend fun getDestinationsByID(@Path("id") id:String):DestinationModel
 
     @POST("destination")
-    fun addDestinationPost(@Body destinationModel:DestinationModel):Call<DestinationModel>
+    suspend fun addDestinationPost(@Body destinationModel:DestinationModel):DestinationModel
 
     @FormUrlEncoded
     @PUT("destination/{id}")
-    fun updateDestination(
+    suspend fun updateDestination(
         @Path("id") id:String,
         @Field("city")city:String,
         @Field("country") country:String,
         @Field("description") description:String
-    ):Call<DestinationModel>
+    ):DestinationModel
 
     @DELETE("destination/{id}")
-    fun deleteDestination(@Path("id")id:String):Call<Unit>
+    suspend fun deleteDestination(@Path("id")id:String):Unit
 }

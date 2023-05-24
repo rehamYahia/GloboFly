@@ -15,8 +15,9 @@ import com.example.globooflly.ui.DetailFragmentDirections
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class DestinationRepoImpl(private val destinationServices: DestinationServices) :DestinationRepositories{
+class DestinationRepoImpl (private val destinationServices: DestinationServices) :DestinationRepositories{
    private lateinit var _promoMessage:MutableLiveData<String>
    private  lateinit var countryList:MutableLiveData<List<DestinationModel>>
    private lateinit var listUpdated:MutableLiveData<DestinationModel>

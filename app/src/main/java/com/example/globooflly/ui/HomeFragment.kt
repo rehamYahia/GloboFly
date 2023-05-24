@@ -15,7 +15,9 @@ import com.example.globooflly.adapter.CountryAdapter
 import com.example.globooflly.databinding.FragmentHomeBinding
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.viewmodel.DestinationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private  var _binding: FragmentHomeBinding?=null
     private val binding get()= _binding!!

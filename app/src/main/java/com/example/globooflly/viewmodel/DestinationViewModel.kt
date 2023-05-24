@@ -10,7 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DestinationViewModel @Inject constructor(private val destinationRepoImp:DestinationRepoImpl) : ViewModel() {
+class DestinationViewModel @Inject constructor(private val destinationRepositories:DestinationRepositories) : ViewModel() {
      private var _promoMessage : MutableLiveData<String> = MutableLiveData()
      private var _listOfCountry:MutableLiveData<List<DestinationModel>> = MutableLiveData()
      private var _listUpdated:MutableLiveData<DestinationModel> = MutableLiveData()
@@ -22,34 +22,34 @@ class DestinationViewModel @Inject constructor(private val destinationRepoImp:De
 
     fun getPromoData():LiveData<String>
     {
-        _promoMessage =  destinationRepoImp.getPromoMessage()
+        _promoMessage =  destinationRepositories.getPromoMessage()
         return _promoMessage
     }
 
     fun getList():LiveData<List<DestinationModel>>{
-        _listOfCountry =  destinationRepoImp.getCountryList()
+        _listOfCountry =  destinationRepositories.getCountryList()
         return _listOfCountry
     }
 
     //problem-----------
     fun updateDestination(id:String , city: String, country: String, description: String):LiveData<DestinationModel>{
-        _listUpdated = destinationRepoImp.updateData( id , city , country , description)
+        _listUpdated = destinationRepositories.updateData( id , city , country , description)
         return _listUpdated
     }
 
     fun ViewDetailModel(id:String) : LiveData<DestinationModel>{
-        _ViewDetailData = destinationRepoImp.viewDetailData(id)
+        _ViewDetailData = destinationRepositories.viewDetailData(id)
         return _ViewDetailData
     }
 
     fun deleteDestination(id:String):LiveData<Unit>
     {
-        _deleteData = destinationRepoImp.deleteDestination(id)
+        _deleteData = destinationRepositories.deleteDestination(id)
         return _deleteData
     }
 
     fun AddNewDestination(destinationModel: DestinationModel):LiveData<DestinationModel>{
-        _addDestination = destinationRepoImp.addNewDestination(destinationModel)
+        _addDestination = destinationRepositories.addNewDestination(destinationModel)
         return _addDestination
 
     }

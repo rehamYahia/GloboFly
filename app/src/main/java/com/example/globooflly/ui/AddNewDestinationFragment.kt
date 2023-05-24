@@ -16,11 +16,12 @@ import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.network.DestinationServices
 import com.example.globooflly.retrofit.DeestinationRetrofit
 import com.example.globooflly.viewmodel.DestinationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
+@AndroidEntryPoint
 class AddNewDestinationFragment : Fragment() {
     private  var _binding: FragmentAddNewDestinationBinding?=null
     private val binding get() = _binding!!

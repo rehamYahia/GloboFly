@@ -12,9 +12,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.globooflly.databinding.FragmentSplashBinding
 import com.example.globooflly.viewmodel.DestinationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
-
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
     private  var _binding: FragmentSplashBinding?=null
     private val binding get() = _binding!!

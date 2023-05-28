@@ -5,9 +5,8 @@ import com.example.globooflly.model.DestinationModel
 
 interface DestinationRepositories {
     suspend fun getPromoMessage():String
-    suspend fun getCountryList():List<DestinationModel>
+    suspend fun getCountryList():ArrayList<DestinationModel>
 
-    //problem-----------
     suspend fun updateData(id:String , city:String , country:String , description:String):DestinationModel
 
     suspend fun viewDetailData(id:String):DestinationModel

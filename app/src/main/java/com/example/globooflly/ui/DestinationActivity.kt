@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DestinationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDestinationBinding
     private val destinationViewModel : DestinationViewModel by viewModels()
-//private val destinationViewModel : hiltViewModel<>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

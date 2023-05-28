@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -23,7 +22,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
     private  var _binding: FragmentHomeBinding?=null
     private val binding get()= _binding!!
-    private lateinit var DeList:ArrayList<DestinationModel>
+    private  var DeList:ArrayList<DestinationModel>?=null
     private val destinationViewModel :DestinationViewModel by viewModels()
     private lateinit var navControler:NavController
 
@@ -60,7 +59,7 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             destinationViewModel.listOfCountry.collect{
                 DeList = ArrayList()
-                DeList = it as ArrayList<DestinationModel>
+                DeList = it
                 binding.recycleCountry.adapter = CountryAdapter(DeList)
                 binding.recycleCountry.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
             }

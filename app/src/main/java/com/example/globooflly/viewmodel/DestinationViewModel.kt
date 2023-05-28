@@ -19,8 +19,8 @@ class DestinationViewModel @Inject constructor(private val destinationRepositori
      private val _promoMessage : MutableStateFlow<String?> = MutableStateFlow(null)
       val  promoMessage : StateFlow<String?> = _promoMessage
 
-     private val _listOfCountry:MutableStateFlow<List<DestinationModel>?> = MutableStateFlow(null)
-     val  listOfCountry:StateFlow<List<DestinationModel>?> = _listOfCountry
+     private val _listOfCountry:MutableStateFlow<ArrayList<DestinationModel>?> = MutableStateFlow(null)
+     val  listOfCountry:StateFlow<ArrayList<DestinationModel>?> = _listOfCountry
 
      private val _listUpdated:MutableStateFlow<DestinationModel?> = MutableStateFlow(null)
      val listUpdated:StateFlow<DestinationModel?> = _listUpdated

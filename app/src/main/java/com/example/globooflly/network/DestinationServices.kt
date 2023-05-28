@@ -6,7 +6,7 @@ import retrofit2.http.*
 
 interface DestinationServices {
     @GET("destination")
-   suspend fun getAllDestinations():List<DestinationModel>
+   suspend fun getAllDestinations():ArrayList<DestinationModel>
 
     //using query parameter
 //    @GET("destination")

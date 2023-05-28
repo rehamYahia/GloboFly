@@ -8,20 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.globooflly.databinding.FragmentAddNewDestinationBinding
 import com.example.globooflly.model.DestinationModel
-import com.example.globooflly.network.DestinationServices
 import com.example.globooflly.viewmodel.DestinationViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 @AndroidEntryPoint
 class AddNewDestinationFragment : Fragment() {
@@ -50,14 +45,21 @@ class AddNewDestinationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(binding.addDestinationToolbar)
         binding.serverAddBtn.setOnClickListener{
-            destinationViewModel.AddNewDestination(DestinationModel(null ,binding.addCityName.editText?.text.toString() , binding.addDescription.editText?.text.toString() ,binding.addCountryName.editText?.text.toString() ))
-            lifecycleScope.launch {
-                destinationViewModel.addDestination.collect{
-                    val action = AddNewDestinationFragmentDirections.actionAddNewDestinationFragmentToHomeFragment()
-                        navController.navigate(action)
+            if(binding.addCityName.editText?.text?.trim().toString().isNotEmpty() && binding.addDescription.editText?.text.toString().isNotEmpty() && binding.addCountryName.editText?.text.toString().isNotEmpty() ){
+                destinationViewModel.AddNewDestination(DestinationModel(null ,binding.addCityName.editText?.text.toString() , binding.addDescription.editText?.text.toString() ,binding.addCountryName.editText?.text.toString() ))
+
+                lifecycleScope.launch {
+                    destinationViewModel.addDestination.collect{
                         Toast.makeText(activity , "post add sussefully " , Toast.LENGTH_LONG).show()
+                    }
                 }
+                val action = AddNewDestinationFragmentDirections.actionAddNewDestinationFragmentToHomeFragment()
+                navController.navigate(action)
+            }else{
+                Toast.makeText(activity , "Please enter destination " , Toast.LENGTH_LONG).show()
             }
+
+
         }
     }
 

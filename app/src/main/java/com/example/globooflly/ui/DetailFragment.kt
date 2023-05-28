@@ -8,19 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.globooflly.databinding.FragmentDetailBinding
-import com.example.globooflly.network.DestinationServices
 import com.example.globooflly.viewmodel.DestinationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
@@ -68,7 +64,6 @@ class DetailFragment : Fragment() {
         }
     }
 
-    //functions
 
     private fun updateData(id:String){
         destinationViewModel.updateDestination(
@@ -80,24 +75,18 @@ class DetailFragment : Fragment() {
         lifecycleScope.launch {
             destinationViewModel.listUpdated.collect{
                 Toast.makeText(activity , "post updated sussefully " , Toast.LENGTH_LONG).show()
-                //broblem---------------------
                 binding.detailToolbar.title = it?.city
-                //broblem---------------------
                 val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
                 navController.navigate(action)
             }
         }
-
     }
 
-    //problem--------------
     fun viewDetailData(){
         destinationViewModel.ViewDetailModel(id!!)
         lifecycleScope.launch {
             destinationViewModel.ViewDetailData.collect{
-                //broblem---------------------
                 binding.detailToolbar.title = it?.country
-                //broblem---------------------
                 binding.serverCityName.editText?.setText(it?.city)
                 binding.serverCountryName.editText?.setText( it?.country)
                 binding.serverDescription.editText?.setText(it?.description  )

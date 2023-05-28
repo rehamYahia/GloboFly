@@ -10,19 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.globooflly.R
 import com.example.globooflly.model.DestinationModel
 import com.example.globooflly.ui.HomeFragmentDirections
-import java.util.*
 import kotlin.collections.ArrayList
 
 class CountryAdapter: RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
     var countryList :ArrayList <DestinationModel> = ArrayList()
-//    private lateinit var navControler:NavController
 
 
     constructor(list: ArrayList<DestinationModel>?){
-//        if (list != null) {
-//            countryList = list
-//        }
-        countryList = list!!
+        if (list != null) {
+            countryList = list
+        }
+
     }
 
     class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

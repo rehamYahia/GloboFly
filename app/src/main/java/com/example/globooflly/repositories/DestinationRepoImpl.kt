@@ -26,7 +26,7 @@ class DestinationRepoImpl (private val destinationServices: DestinationServices)
    override suspend fun getPromoMessage(): String = destinationServices.getPromoMessge()
 
 
-   override suspend fun getCountryList(): List<DestinationModel> = destinationServices.getAllDestinations()
+   override suspend fun getCountryList(): ArrayList<DestinationModel> = destinationServices.getAllDestinations()
 
    override suspend fun updateData(id: String, city: String, country: String, description: String)
    : DestinationModel  = destinationServices.updateDestination(id , city , country , description)

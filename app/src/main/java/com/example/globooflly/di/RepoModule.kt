@@ -1,5 +1,6 @@
 package com.example.globooflly.di
 
+import com.example.globooflly.database.DestinationDao
 import com.example.globooflly.network.DestinationServices
 import com.example.globooflly.repositories.DestinationRepoImpl
 import com.example.globooflly.repositories.DestinationRepositories
@@ -13,9 +14,9 @@ import dagger.hilt.components.SingletonComponent
 object RepoModule {
 
     @Provides
-    fun ProvideRepo(destinationServices: DestinationServices): DestinationRepositories
+    fun ProvideRepo(destinationServices: DestinationServices , destinationDao: DestinationDao): DestinationRepositories
     {
-        return DestinationRepoImpl(destinationServices)
+        return DestinationRepoImpl(destinationServices , destinationDao)
     }
 
 }

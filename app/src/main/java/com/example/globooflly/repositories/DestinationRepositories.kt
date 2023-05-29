@@ -2,8 +2,10 @@ package com.example.globooflly.repositories
 
 import androidx.lifecycle.MutableLiveData
 import com.example.globooflly.model.DestinationModel
+import kotlinx.coroutines.flow.StateFlow
 
 interface DestinationRepositories {
+    //remote
     suspend fun getPromoMessage():String
     suspend fun getCountryList():ArrayList<DestinationModel>
 
@@ -14,4 +16,11 @@ interface DestinationRepositories {
    suspend fun deleteDestination(id:String):Unit
 
    suspend fun addNewDestination(destinationModel: DestinationModel):DestinationModel
+
+   //local database
+   suspend fun RinsertPlace(destinationModel: DestinationModel)
+//    suspend fun RgetAllPlaces(): StateFlow<ArrayList<DestinationModel>>
+//
+//    suspend fun RupdatePlace(id:String , city:String , description :String , country:String)
+//    suspend fun RdeletePlace(id:String) :Unit
 }

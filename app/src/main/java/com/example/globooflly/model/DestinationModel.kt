@@ -2,10 +2,11 @@ package com.example.globooflly.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-
+ 
 @Entity(tableName = "tableDestination")
 class DestinationModel {
-//    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
+    var index :Int ?= null
     var id:String ?= null
     var city:String ?= null
     var description :String ?= null

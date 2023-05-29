@@ -34,6 +34,7 @@ class DestinationViewModel @Inject constructor(private val destinationRepositori
     private val _addDestination:MutableStateFlow<DestinationModel?> = MutableStateFlow(null)
      val addDestination:StateFlow<DestinationModel?> = _addDestination
 
+
     //method---------------------------------
 
     fun getPromoData()
@@ -76,5 +77,13 @@ class DestinationViewModel @Inject constructor(private val destinationRepositori
             _addDestination.value = destinationRepositories.addNewDestination(destinationModel)
         }
     }
+
+    fun VinsertPlace(destinationModel: DestinationModel){
+        viewModelScope.launch {
+            destinationRepositories.RinsertPlace(destinationModel)
+        }
+    }
+
+
 
 }

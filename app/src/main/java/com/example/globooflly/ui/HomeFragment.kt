@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -62,6 +63,10 @@ class HomeFragment : Fragment() {
                 DeList = it
                 binding.recycleCountry.adapter = CountryAdapter(DeList)
                 binding.recycleCountry.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+                it?.forEach {
+                    destinationViewModel.VinsertPlace(it)
+                }
+                Toast.makeText(activity , "the list is added in room " , Toast.LENGTH_LONG).show()
             }
         }
     }

@@ -42,5 +42,5 @@ interface DestinationServices {
     ):DestinationModel
 
     @DELETE("destination/{id}")
-    suspend fun deleteDestination(@Path("id")id:String):Unit
+    suspend fun deleteDestination(@Path("id")id:String)
 }

@@ -24,7 +24,7 @@ class DetailFragment : Fragment() {
     private  var _binding: FragmentDetailBinding?=null
     private val binding get() = _binding!!
 
-    val args : DetailFragmentArgs by navArgs()
+    private val args : DetailFragmentArgs by navArgs()
     var id:String?=null
     private lateinit var navController: NavController
     private val destinationViewModel :DestinationViewModel by viewModels()
@@ -53,14 +53,11 @@ class DetailFragment : Fragment() {
         viewDetailData()
 
         binding.serverUpdate.setOnClickListener {
-            id?.let { it1 -> updateData(it1) }
+            updateData(id!!)
 
         }
-        viewDetailData()
         binding.serverDelete.setOnClickListener {
-            id?.let { it1 -> deleteDetailData(it1) }
-
-
+            deleteDetailData(id!!)
         }
     }
 
@@ -76,13 +73,14 @@ class DetailFragment : Fragment() {
             destinationViewModel.listUpdated.collect{
                 Toast.makeText(activity , "post updated sussefully " , Toast.LENGTH_LONG).show()
                 binding.detailToolbar.title = it?.city
-                val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
-                navController.navigate(action)
             }
         }
+        val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+        navController.navigate(action)
+
     }
 
-    fun viewDetailData(){
+    private fun viewDetailData(){
         destinationViewModel.ViewDetailModel(id!!)
         lifecycleScope.launch {
             destinationViewModel.ViewDetailData.collect{
@@ -95,22 +93,22 @@ class DetailFragment : Fragment() {
 
     }
 
-    fun deleteDetailData(id:String){
+    private fun deleteDetailData(id:String){
         destinationViewModel.deleteDestination(id)
         lifecycleScope.launch {
             destinationViewModel.deleteData.collect{
-                val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
-                navController.navigate(action)
                 Toast.makeText(activity , "delete successfully" , Toast.LENGTH_LONG).show()
             }
         }
+        val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+        navController.navigate(action)
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
 
 
 }

@@ -19,12 +19,12 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class DestinationRepoImpl (private val destinationServices: DestinationServices , private val destinationDao: DestinationDao) :DestinationRepositories{
-   private lateinit var _promoMessage:MutableLiveData<String>
-   private  lateinit var countryList:MutableLiveData<List<DestinationModel>>
-   private lateinit var listUpdated:MutableLiveData<DestinationModel>
-   private lateinit var viewDetailData:MutableLiveData<DestinationModel>
-   private lateinit var deleteData:MutableLiveData<Unit>
-   private lateinit var AddDestination:MutableLiveData<DestinationModel>
+//   private lateinit var _promoMessage:MutableLiveData<String>
+//   private  lateinit var countryList:MutableLiveData<List<DestinationModel>>
+//   private lateinit var listUpdated:MutableLiveData<DestinationModel>
+//   private lateinit var viewDetailData:MutableLiveData<DestinationModel>
+//   private lateinit var deleteData:MutableLiveData<Unit>
+//   private lateinit var AddDestination:MutableLiveData<DestinationModel>
    override suspend fun getPromoMessage(): String = destinationServices.getPromoMessge()
 
 
@@ -37,7 +37,9 @@ class DestinationRepoImpl (private val destinationServices: DestinationServices 
 
    override suspend fun viewDetailData(id: String): DestinationModel = destinationServices.getDestinationsByID(id)
 
-   override suspend fun deleteDestination(id: String) = destinationServices.deleteDestination(id)
+   override suspend fun deleteDestination(id: String) =
+      destinationServices.deleteDestination(id)
+
 
    override suspend fun addNewDestination(destinationModel: DestinationModel): DestinationModel = destinationServices.addDestinationPost(destinationModel)
 

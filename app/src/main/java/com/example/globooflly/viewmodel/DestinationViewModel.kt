@@ -69,6 +69,7 @@ class DestinationViewModel @Inject constructor(private val destinationRepositori
     {
         viewModelScope.launch {
             _deleteData.value = destinationRepositories.deleteDestination(id)
+//            destinationRepositories.deleteDestination(id)
         }
     }
 

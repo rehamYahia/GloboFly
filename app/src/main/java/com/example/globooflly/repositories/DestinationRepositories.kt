@@ -13,7 +13,7 @@ interface DestinationRepositories {
 
     suspend fun viewDetailData(id:String):DestinationModel
 
-   suspend fun deleteDestination(id:String):Unit
+   suspend fun deleteDestination(id:String)
 
    suspend fun addNewDestination(destinationModel: DestinationModel):DestinationModel
 

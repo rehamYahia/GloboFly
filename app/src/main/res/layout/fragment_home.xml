@@ -21,9 +21,8 @@
             android:id="@+id/floatingBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/movi"
+            android:backgroundTint="@color/purple_500"
             android:src="@drawable/add"
-
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="28dp" android:layout_marginBottom="32dp"/>
 

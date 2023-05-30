@@ -50,52 +50,32 @@ class AddNewDestinationFragment : Fragment() //, ConnectivityReceiver.Connectivi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(binding.addDestinationToolbar)
-   //To obtain information about the current state of the connection
-//        val cm = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//        val activeNetwork:NetworkInfo? = cm.activeNetworkInfo
-//        val isConnected : Boolean = activeNetwork?.isConnected == true
-//
-//        registerReceiver(ConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-//        ConnectivityReceiver.connectivityReceiverListener = this
 
         binding.serverAddBtn.setOnClickListener{
-            if(binding.addCityName.editText?.text?.trim().toString().isNotEmpty() && binding.addDescription.editText?.text.toString().isNotEmpty() && binding.addCountryName.editText?.text.toString().isNotEmpty() ){
-                destinationViewModel.AddNewDestination(DestinationModel(null ,binding.addCityName.editText?.text.toString() , binding.addDescription.editText?.text.toString() ,binding.addCountryName.editText?.text.toString() ))
+                if(binding.addCityName.editText?.text?.trim().toString().isNotEmpty() && binding.addDescription.editText?.text.toString().isNotEmpty() && binding.addCountryName.editText?.text.toString().isNotEmpty() ){
+                    destinationViewModel.AddNewDestination(DestinationModel(null ,binding.addCityName.editText?.text.toString() , binding.addDescription.editText?.text.toString() ,binding.addCountryName.editText?.text.toString() ))
 
-                lifecycleScope.launch {
-                    destinationViewModel.addDestination.collect{
-                        Toast.makeText(activity , "post add sussefully " , Toast.LENGTH_LONG).show()
+                    lifecycleScope.launch {
+                        destinationViewModel.addDestination.collect{
+                            Toast.makeText(activity , "post add sussefully " , Toast.LENGTH_LONG).show()
+                        }
                     }
+                    val action = AddNewDestinationFragmentDirections.actionAddNewDestinationFragmentToHomeFragment()
+                    navController.navigate(action)
+                }else{
+                    Toast.makeText(activity , "Please enter destination " , Toast.LENGTH_LONG).show()
                 }
-                val action = AddNewDestinationFragmentDirections.actionAddNewDestinationFragmentToHomeFragment()
-                navController.navigate(action)
-            }else{
-                Toast.makeText(activity , "Please enter destination " , Toast.LENGTH_LONG).show()
-            }
-
 
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-//    override fun onNetworkConnectionChanged(isConnected: Boolean) {
-//        showNetworkMessage(isConnected)
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
 //    }
 
 
-//    private fun showNetworkMessage(isConnected: Boolean) {
-//        if (!isConnected) {
-//            //snackbar = Snackbar.make(findViewById(R.id.rootLayout), "You are offline", Snackbar.LENGTH_LONG) //Assume "rootLayout" as the root layout of every activity.
-//            //snackbar?.duration = BaseTransientBottomBar.LENGTH_INDEFINITE
-//           // snackbar?.show()
-//        } else {
-//            //snackbar?.dismiss()
-//        }
-//    }
+
 
 
 }

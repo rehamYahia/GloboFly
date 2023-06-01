@@ -2,7 +2,6 @@ package com.example.globooflly.ui
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,14 +15,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.globooflly.databinding.FragmentAddNewDestinationBinding
 import com.example.globooflly.model.DestinationModel
-import com.example.globooflly.receiver.ConnectivityReceiver
 import com.example.globooflly.viewmodel.DestinationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class AddNewDestinationFragment : Fragment() //, ConnectivityReceiver.ConnectivityReceiverListener
+class AddNewDestinationFragment : Fragment()
 {
     private  var _binding: FragmentAddNewDestinationBinding?=null
     private val binding get() = _binding!!

@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
                 it?.forEach {
                     destinationViewModel.VinsertPlace(it)
                 }
-                Toast.makeText(activity , "the list is added in room " , Toast.LENGTH_LONG).show()
+
             }
         }
     }

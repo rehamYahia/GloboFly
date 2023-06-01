@@ -28,8 +28,8 @@ class DestinationViewModel @Inject constructor(private val destinationRepositori
      private val _ViewDetailData:MutableStateFlow<DestinationModel?> = MutableStateFlow(null)
      val ViewDetailData:StateFlow<DestinationModel?> = _ViewDetailData
 
-     private val _deleteData:MutableStateFlow<Unit?> = MutableStateFlow(null)
-     val deleteData:StateFlow<Unit?> = _deleteData
+//     private val _deleteData:MutableStateFlow<Unit?> = MutableStateFlow(null)
+//     val deleteData:StateFlow<Unit?> = _deleteData
 
     private val _addDestination:MutableStateFlow<DestinationModel?> = MutableStateFlow(null)
      val addDestination:StateFlow<DestinationModel?> = _addDestination
@@ -68,8 +68,8 @@ class DestinationViewModel @Inject constructor(private val destinationRepositori
     fun deleteDestination(id:String)
     {
         viewModelScope.launch {
-            _deleteData.value = destinationRepositories.deleteDestination(id)
-//            destinationRepositories.deleteDestination(id)
+//            _deleteData.value = destinationRepositories.deleteDestination(id)
+            destinationRepositories.deleteDestination(id)
         }
     }
 

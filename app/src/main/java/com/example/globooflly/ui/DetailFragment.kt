@@ -30,10 +30,7 @@ class DetailFragment : Fragment() {
     private val destinationViewModel :DestinationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         navController = findNavController()
-
     }
 
     override fun onCreateView(
@@ -95,13 +92,15 @@ class DetailFragment : Fragment() {
 
     private fun deleteDetailData(id:String){
         destinationViewModel.deleteDestination(id)
-        lifecycleScope.launch {
-            destinationViewModel.deleteData.collect{
-                Toast.makeText(activity , "delete successfully" , Toast.LENGTH_LONG).show()
-            }
-        }
+//        lifecycleScope.launch {
+//            destinationViewModel.deleteData.collect{
+////                Toast.makeText(activity , "delete successfully" , Toast.LENGTH_LONG).show()
+//
+//            }
+//        }
         val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
         navController.navigate(action)
+
 
     }
 
